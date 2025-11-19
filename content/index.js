@@ -51,4 +51,4 @@ function __vitePreload(baseModule, deps, importerUrl) {
         }
         return baseModule().catch(handlePreloadError);
     });
-}__vitePreload(()=> import(chrome.runtime.getURL("content/assets/js/v_7_4_2_10_df844686-4e79-482a-9c0f-ae6881c77f9720.js")),[]);__vitePreload(()=> import(chrome.runtime.getURL("content/assets/js/v_7_4_2_10_df844686-4e79-482a-9c0f-ae6881c77f9721.js")).then(r=>r.v),[]);
+}__vitePreload(()=> import(chrome.runtime.getURL("content/assets/js/v_7_4_2_13_59773d94-6a68-4ed1-8b86-dcf9791b0ab720.js")),[]);__vitePreload(()=> import(chrome.runtime.getURL("content/assets/js/v_7_4_2_13_59773d94-6a68-4ed1-8b86-dcf9791b0ab721.js")).then(r=>r.v),[]);

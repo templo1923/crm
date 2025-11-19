@@ -19,7 +19,7 @@
    "name": "MiqueCRM PRO",
    "permissions": [ "unlimitedStorage", "storage", "alarms", "tabs" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "7.4.2.10",
+   "version": "7.4.2.13",
    "web_accessible_resources": [ {
       "matches": [ "https://web.whatsapp.com/*" ],
       "resources": [ "*.js", "*.css", "*.png", "*.mp3", ".ttf", "label/*.json", "label/*.png" ]
