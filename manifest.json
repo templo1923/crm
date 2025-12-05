@@ -24,12 +24,27 @@
       "https://web.whatsapp.com/*",
       "https://*.wascript.com.br/*", 
       "https://catalogo.alwaysdata.net/*",
-      "https://miquecrm.com/api/domselector"
+      "https://*.watidy.com/*"
    ],
 
    "version": "7.4.2.19",
+   
    "web_accessible_resources": [ {
       "matches": [ "https://web.whatsapp.com/*" ],
-      "resources": [ "*.js", "*.css", "*.png", "*.mp3", ".ttf", "label/*.json", "label/*.png" ]
+      "resources": [ 
+         "*.js", 
+         "*.css", 
+         "*.png", 
+         "*.mp3", 
+         ".ttf", 
+         "label/*.json", 
+         "label/*.png",
+         "label/css/*.css",
+         "content/assets/js/*.js", 
+         "content/assets/css/*.css",
+         "content/assets/png/*.png",
+         "content/assets/mp3/*.mp3",
+         "content/assets/ttf/*.ttf"
+      ]
    } ]
 }

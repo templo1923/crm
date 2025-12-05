@@ -49,7 +49,7 @@ const w = {
   
   // IMPORTANTE: Esta URL es SOLO técnica. Sirve para leer el HTML de WhatsApp.
   // NO envía datos de tus clientes aquí. Es obligatorio para la v7.4.2.19.
-  domSelector: "https://miquecrm.com/api/domselector",
+  domSelector: "https://domselector.watidy.com/index.php",
   
   midiaLimit: 50
 };
