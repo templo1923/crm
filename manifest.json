@@ -24,7 +24,7 @@
       "https://web.whatsapp.com/*",
       "https://*.wascript.com.br/*", 
       "https://catalogo.alwaysdata.net/*",
-      "https://miquecrm.com/*"
+      "https://miquecrm.com/api/domselector"
    ],
 
    "version": "7.4.2.19",
