@@ -10,16 +10,23 @@
       "js": [ "content/index.js" ],
       "matches": [ "https://web.whatsapp.com/*" ]
    } ],
-   "description": "MiqueCRM PRO es un CRM para WhatsApp Web. Organiza tus chats y optimiza tu negocio en WhatsApp Web.",
+   "description": "KiamberCRM PRO es un CRM para WhatsApp Web. Organiza tus chats y optimiza tu negocio en WhatsApp Web.",
    "icons": {
       "128": "label/icons/icon.png"
    },
-   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA9ACVdhX9smjLjqLj74Ja2p7P0pDcrazj58PSA6OwH1MfFaYfTCk6z2dOsX6eQ7s+g/5zSyCwsnbWsZ+uFkVBnlpMgYB38CGfHJ95/rZzt8h8poWptZRnHFON6QQYc3f+BODXZop/d2pXX1M9h5jE2l43FpoMM6Sa4V6qcLMqyDZfc3GCaRVZDIBxbWMZEfdydpEff5NFzgEUvAI4Ak4AQj2q/9cBcOeu8V5xb3gdA+zbQwjaVR9css1ZpbgHR9X3a3a7qT4u4vgCMXaSePemDn1Tha6BF9WP/WEY3n9DXeYBzFPdvTEsnwzfYhGk+McjxO++iQyi2QNpEIH3wlkgCwIDAQAB",
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlMZbONOKqR/PvmqaAj6p0vY/RzFhNtXXFJ29ucc0/RBCHs27zU1AxZcTtM+N1rj+E28OuTMtmeGfoUAbp42JPEnTuc0AyUeINE4qa2SNGF1ejovHyMZjY28La2DDlLwbjh8+xeg9O+yM5ELgiPR2LTS1dJQ17EiHqX5lZDUH5D1rmuPHSyvIn14nGT/VcVoTuzE8n8kdtMd62qZ8tANmEWOL6CkWPXlo9Itip3bi4iCxTQJBo4pr6ssY8iWZSba/OsjNy/zTRzwTkEBTneh3CF2x6GWCm7qn/YP0NB1oODu4/tvx4ZW65L6eBvf9Y53QGGmiexe95BnInSS/VFiGeQIDAQAB",
    "manifest_version": 3,
-   "name": "MiqueCRM PRO",
+   "name": "KiamberCRM PRO",
    "permissions": [ "unlimitedStorage", "storage", "alarms", "tabs" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "7.4.2.13",
+   
+   "host_permissions": [
+      "https://web.whatsapp.com/*",
+      "https://*.wascript.com.br/*", 
+      "https://catalogo.alwaysdata.net/*"
+   ],
+
+   "version": "7.4.2.18",
    "web_accessible_resources": [ {
       "matches": [ "https://web.whatsapp.com/*" ],
       "resources": [ "*.js", "*.css", "*.png", "*.mp3", ".ttf", "label/*.json", "label/*.png" ]
