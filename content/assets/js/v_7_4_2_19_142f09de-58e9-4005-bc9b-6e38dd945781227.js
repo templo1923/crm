@@ -1,0 +1,1 @@
+import{j as s,da as e,aU as r,aV as t}from"./v_7_4_2_19_142f09de-58e9-4005-bc9b-6e38dd94578110.js";const o=({id:a})=>s.jsx("span",{children:a.includes("@lid")?s.jsx(e,{className:"h-5 w-5 text-[var(--icon)]"}):a.length>19?s.jsx(r,{className:"h-5 w-5 text-[var(--icon)]"}):s.jsx(t,{className:"h-5 w-5 text-[var(--icon)]"})});export{o as V};

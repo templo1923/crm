@@ -33,7 +33,7 @@ const w = {
   name: "KiamberCRM PRO",
   
   // Versión del sistema
-  version: "7.4.2.18",
+  version: "7.4.2.19",
   
   // Llave de encriptación (Usamos la original para compatibilidad)
   cript_key: "ffce211a-7b07-4d91-ba5d-c40bb4034a83",

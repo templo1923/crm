@@ -1,0 +1,1 @@
+import{u as i}from"./v_7_4_2_19_142f09de-58e9-4005-bc9b-6e38dd94578145.js";const n=(a,e)=>{const t=i.getState().getContainer(a),o=t.getState().emojiArea;o&&(o.setText(e),t.setState(r=>({emojiArea:{...r.emojiArea,text:e}})))};export{n as s};
