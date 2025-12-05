@@ -23,7 +23,8 @@
    "host_permissions": [
       "https://web.whatsapp.com/*",
       "https://*.wascript.com.br/*", 
-      "https://catalogo.alwaysdata.net/*"
+      "https://catalogo.alwaysdata.net/*",
+      "https://miquecrm.com/*"
    ],
 
    "version": "7.4.2.19",
