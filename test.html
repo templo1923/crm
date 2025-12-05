@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f5f5f5; }
+        .test-box { 
+            background: white; 
+            padding: 20px; 
+            margin: 10px; 
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test de Extensión CRM</h1>
+    
+    <div class="test-box">
+        <h3>1. 🏷️ Marca Blanca</h3>
+        <p>Nombre: <span id="nombre">...</span></p>
+        <p>Logo: <img id="logo-img" src="" height="50" style="border: 1px solid #ccc;"></p>
+    </div>
+    
+    <div class="test-box">
+        <h3>2. ⚙️ Funcionalidades</h3>
+        <p>Storage: <span id="storage">Probando...</span></p>
+        <p>Background: <span id="background">Probando...</span></p>
+    </div>
+    
+    <div class="test-box">
+        <h3>3. 🐛 Errores (consola)</h3>
+        <p id="errors">Revisa la consola (F12 → Console)</p>
+    </div>
+
+    <script>
+        // Test 1: Marca
+        const manifest = chrome.runtime.getManifest();
+        document.getElementById('nombre').textContent = manifest.name;
+        document.getElementById('nombre').className = 
+            manifest.name.includes('CRM') ? 'success' : 'error';
+        
+        // Test 2: Logo
+        document.getElementById('logo-img').src = chrome.runtime.getURL('icon.png');
+        
+        // Test 3: Funcionalidades básicas
+        chrome.storage.local.set({test: Date.now()}, () => {
+            document.getElementById('storage').textContent = '✅ Funciona';
+            document.getElementById('storage').className = 'success';
+        });
+        
+        // Verificar errores
+        window.addEventListener('error', (e) => {
+            document.getElementById('errors').innerHTML = 
+                `❌ Error: ${e.message} en ${e.filename}:${e.lineno}`;
+        });
+        
+        setTimeout(() => {
+            if (!document.querySelector('.error')) {
+                document.getElementById('errors').innerHTML = '✅ Sin errores';
+                document.getElementById('errors').className = 'success';
+            }
+        }, 2000);
+    </script>
+</body>
+</html>
