@@ -24,31 +24,25 @@ async function f() {
   n("https://web.whatsapp.com/*", "Update_Notificação", { update: t, dispart: o, tam: a });
 }
 
-// --- CONFIGURACIÓN DE TU MARCA (KIAMBER CRM) ---
+// --- CONFIGURACIÓN (KIAMBER + WATIDY) ---
 const w = {
   name: "KiamberCRM PRO",
   version: "7.4.2.19",
   cript_key: "ffce211a-7b07-4d91-ba5d-c40bb4034a83",
   
-  // TU BACKEND: Aquí es donde se verifican tus usuarios
+  // TUS DATOS (Siempre Alwaysdata)
   backend: "https://catalogo.alwaysdata.net/",
+  painel_Gestor: "https://catalogo.alwaysdata.net/",
   
-  // Backend técnico (compartido para utilidades)
+  // TÉCNICO (Siempre Watidy/Wascript para v7.4.2.19)
   backend_utils: "https://backend-utils.wascript.com.br/",
-  
-  // WebSockets (necesarios para funciones en tiempo real)
   webSocket: {
     "multi-atendimento": "https://multi-atendimento.wascript.com.br",
     "api-whatsapp": "https://api-whatsapp.wascript.com.br"
   },
-  
-  // TU Panel de gestión
-  painel_Gestor: "https://catalogo.alwaysdata.net/",
-  
   audio_transcriber: "https://audio-transcriber.wascript.com.br/transcription",
   
-  // IMPORTANTE: Esta URL es SOLO técnica. Sirve para leer el HTML de WhatsApp.
-  // NO envía datos de tus clientes aquí. Es obligatorio para la v7.4.2.19.
+  // CRÍTICO: Selector de Watidy
   domSelector: "https://domselector.watidy.com/index.php",
   
   midiaLimit: 50
@@ -116,17 +110,18 @@ const g = () => {
 
 async function k() {
   chrome.storage.local.get(null, (e) => {
-    // INYECCIÓN DE SEGURIDAD:
-    // Aseguramos que si el frontend busca la config en storage, encuentre la tuya.
+    // *** AQUÍ ESTABA EL ERROR ***
+    // Faltaba domSelector. Ahora está agregado.
     const systemConfig = {
        backend: w.backend,
        painel_Gestor: w.painel_Gestor,
        name: w.name,
-       version: w.version
+       version: w.version,
+       domSelector: w.domSelector // <--- CRÍTICO PARA EVITAR PANTALLA NEGRA
     };
 
     chrome.storage.local.set({
-      config: systemConfig, // Guardamos tu config explícitamente
+      config: systemConfig, // Se guarda la configuración completa
       agendamentos: e.agendamentos || [],
       agendamentosNaoDisparados: e.agendamentosNaoDisparados || [],
       sendAfterWhatsAppOpens: e.sendAfterWhatsAppOpens || !1,
@@ -169,12 +164,11 @@ function u() {
   });
 }
 
-// URL de Desinstalación (Tuya)
 function A() {
+  // URL de desinstalación genérica para pruebas
   chrome.runtime.setUninstallURL(`https://miquetools.com/contact`); 
 }
 
-// Evento de Instalación (Tu URL de bienvenida)
 function _(e) {
   if (e.reason === "install") {
      chrome.tabs.create({ url: "https://kb.miquehosting.com/mique-crm/crm-extension-master" });

@@ -14,37 +14,30 @@
    "icons": {
       "128": "label/icons/icon.png"
    },
-   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlMZbONOKqR/PvmqaAj6p0vY/RzFhNtXXFJ29ucc0/RBCHs27zU1AxZcTtM+N1rj+E28OuTMtmeGfoUAbp42JPEnTuc0AyUeINE4qa2SNGF1ejovHyMZjY28La2DDlLwbjh8+xeg9O+yM5ELgiPR2LTS1dJQ17EiHqX5lZDUH5D1rmuPHSyvIn14nGT/VcVoTuzE8n8kdtMd62qZ8tANmEWOL6CkWPXlo9Itip3bi4iCxTQJBo4pr6ssY8iWZSba/OsjNy/zTRzwTkEBTneh3CF2x6GWCm7qn/YP0NB1oODu4/tvx4ZW65L6eBvf9Y53QGGmiexe95BnInSS/VFiGeQIDAQAB",
    "manifest_version": 3,
    "name": "KiamberCRM PRO",
    "permissions": [ "unlimitedStorage", "storage", "alarms", "tabs" ],
-   "update_url": "https://clients2.google.com/service/update2/crx",
-   
    "host_permissions": [
       "https://web.whatsapp.com/*",
       "https://*.wascript.com.br/*", 
       "https://catalogo.alwaysdata.net/*",
       "https://*.watidy.com/*"
    ],
-
    "version": "7.4.2.19",
-   
    "web_accessible_resources": [ {
       "matches": [ "https://web.whatsapp.com/*" ],
       "resources": [ 
-         "*.js", 
-         "*.css", 
-         "*.png", 
-         "*.mp3", 
-         ".ttf", 
-         "label/*.json", 
-         "label/*.png",
-         "label/css/*.css",
-         "content/assets/js/*.js", 
-         "content/assets/css/*.css",
-         "content/assets/png/*.png",
-         "content/assets/mp3/*.mp3",
-         "content/assets/ttf/*.ttf"
+         "*.js", "*.css", "*.png", "*.mp3", "*.ttf", "*.json",
+         "label/*", "label/css/*", "label/icons/*", "label/config/*",
+         "content/*", 
+         "content/assets/js/*", "content/assets/css/*", "content/assets/png/*", "content/assets/mp3/*", "content/assets/ttf/*",
+         "crm/*", 
+         "crm/assets/js/*", "crm/assets/css/*", "crm/assets/png/*", "crm/assets/ttf/*", "crm/src/*",
+         "fluxo/*", 
+         "fluxo/assets/js/*", "fluxo/assets/css/*", "fluxo/assets/png/*", "fluxo/assets/ttf/*", "fluxo/src/*",
+         "funnil/*", 
+         "funnil/assets/js/*", "funnil/assets/css/*", "funnil/assets/png/*", "funnil/assets/ttf/*", "funnil/src/*",
+         "whatsapp/*"
       ]
    } ]
 }
