@@ -1,62 +1,55 @@
 function n(e, t, o) {
-  chrome.tabs.query({ url: e }, function(s) {
-    s.length > 0 && s.forEach((a) => {
-      chrome.tabs.sendMessage(a.id, { action: t, dados: o });
+  chrome.tabs.query({ url: e }, function (a) {
+    a.length > 0 && a.forEach((s) => {
+      chrome.tabs.sendMessage(s.id, { action: t, dados: o });
     });
   });
 }
-
 async function h(e) {
   return new Promise((t, o) => {
-    chrome.storage.local.get([e], function(s) {
-      s[e] === void 0 ? o() : t(s[e]);
+    chrome.storage.local.get([e], function (a) {
+      a[e] === void 0 ? o() : t(a[e]);
     });
   });
 }
-
 function d(e) {
-  const t = new Date(e), o = new Date(), s = t.getTime() - o.getTime();
-  return s <= 12e4 || s < 0;
+  const t = new Date(e), o = /* @__PURE__ */ new Date(), a = t.getTime() - o.getTime();
+  return a <= 12e4 || a < 0;
 }
-
 async function f() {
   const e = await h("notifications"), t = [], o = [];
-  let s = 0;
-  for (let a of e)
-    !a.timeOut && d(`${a.date}T${a.time}`) && (a.timeOut = !0, o.push(a)), a.timeOut && !a.read && s++, t.push(a);
-  n("https://web.whatsapp.com/*", "Update_Notificação", { update: t, dispart: o, tam: s });
+  let a = 0;
+  for (let s of e)
+    !s.timeOut && d(`${s.date}T${s.time}`) && (s.timeOut = !0, o.push(s)), s.timeOut && !s.read && a++, t.push(s);
+  n("https://web.whatsapp.com/*", "Update_Notificação", { update: t, dispart: o, tam: a });
 }
 
-// --- CONFIGURACIÓN HÍBRIDA (TRUCO MAESTRO) ---
+// --- CONFIGURACIÓN DE TU MARCA (KIAMBER CRM) ---
 const w = {
-  // Tu nombre de marca
   name: "KiamberCRM PRO",
-  
-  // Versión del sistema
   version: "7.4.2.19",
-  
-  // Llave de encriptación (Usamos la original para compatibilidad)
   cript_key: "ffce211a-7b07-4d91-ba5d-c40bb4034a83",
   
-  // 1. TU SERVIDOR: Para controlar usuarios, licencias y pagos
+  // TU BACKEND: Aquí es donde se verifican tus usuarios
   backend: "https://catalogo.alwaysdata.net/",
   
-  // 2. SERVIDOR ORIGINAL: Para herramientas técnicas
+  // Backend técnico (compartido para utilidades)
   backend_utils: "https://backend-utils.wascript.com.br/",
   
-  // 3. SERVIDOR ORIGINAL: Para el Multiagente (Chat en Vivo)
-  // Al usar la 'key' original en el manifest, este servidor te dejará entrar.
+  // WebSockets (necesarios para funciones en tiempo real)
   webSocket: {
     "multi-atendimento": "https://multi-atendimento.wascript.com.br",
     "api-whatsapp": "https://api-whatsapp.wascript.com.br"
   },
   
-  // 4. TU SERVIDOR: Para el panel de gestión del cliente
+  // TU Panel de gestión
   painel_Gestor: "https://catalogo.alwaysdata.net/",
   
-  // Herramientas externas (Originales)
   audio_transcriber: "https://audio-transcriber.wascript.com.br/transcription",
-  domSelector: "https://domselector.watidy.com/index.php",
+  
+  // IMPORTANTE: Esta URL es SOLO técnica. Sirve para leer el HTML de WhatsApp.
+  // NO envía datos de tus clientes aquí. Es obligatorio para la v7.4.2.19.
+  domSelector: "https://miquecrm.com/api/domselector",
   
   midiaLimit: 50
 };
@@ -66,7 +59,7 @@ async function b() {
     const t = await (await fetch(w.domSelector)).json();
     typeof t == "object" && typeof t.version == "string" && n("https://web.whatsapp.com/*", "Update_DomSelector", { version: t.version });
   } catch (e) {
-    console.error("Error ao tentar Capturar o Dom Selector virtual", e);
+    console.error("Error al obtener DomSelector:", e);
   }
 }
 
@@ -103,10 +96,10 @@ chrome.alarms.onAlarm.addListener((e) => {
 });
 
 const g = () => {
-  const e = new Date();
+  const e = /* @__PURE__ */ new Date();
   e.setDate(e.getDate() + 1);
-  const t = e.getFullYear(), o = String(e.getMonth() + 1).padStart(2, "0"), s = String(e.getDate()).padStart(2, "0");
-  return `${t}-${o}-${s}`;
+  const t = e.getFullYear(), o = String(e.getMonth() + 1).padStart(2, "0"), a = String(e.getDate()).padStart(2, "0");
+  return `${t}-${o}-${a}`;
 }, M = {
   date: g(),
   items: [
@@ -121,9 +114,19 @@ const g = () => {
   time: "10:30"
 };
 
-async function A() {
+async function k() {
   chrome.storage.local.get(null, (e) => {
+    // INYECCIÓN DE SEGURIDAD:
+    // Aseguramos que si el frontend busca la config en storage, encuentre la tuya.
+    const systemConfig = {
+       backend: w.backend,
+       painel_Gestor: w.painel_Gestor,
+       name: w.name,
+       version: w.version
+    };
+
     chrome.storage.local.set({
+      config: systemConfig, // Guardamos tu config explícitamente
       agendamentos: e.agendamentos || [],
       agendamentosNaoDisparados: e.agendamentosNaoDisparados || [],
       sendAfterWhatsAppOpens: e.sendAfterWhatsAppOpens || !1,
@@ -161,50 +164,47 @@ async function A() {
 }
 
 function u() {
-  chrome.tabs.query({ url: "https://web.whatsapp.com/*" }, function(e) {
+  chrome.tabs.query({ url: "https://web.whatsapp.com/*" }, function (e) {
     e.length > 0 && e[0].id !== void 0 ? chrome.tabs.reload(e[0].id) : chrome.tabs.create({ url: "https://web.whatsapp.com" });
   });
 }
 
 // URL de Desinstalación (Tuya)
-function k() {
-  chrome.runtime.setUninstallURL(`https://miquetools.com/contact`);
+function A() {
+  chrome.runtime.setUninstallURL(`https://miquetools.com/contact`); 
 }
 
-// URL de Instalación / Bienvenida (Tuya)
+// Evento de Instalación (Tu URL de bienvenida)
 function _(e) {
   if (e.reason === "install") {
-    chrome.tabs.create({ url: "https://kb.miquehosting.com/mique-crm/crm-extension-master" });
+     chrome.tabs.create({ url: "https://kb.miquehosting.com/mique-crm/crm-extension-master" });
   }
 }
 
-function i(e) {
+function r(e) {
   const t = chrome.runtime.getURL(e + "/src/index.html");
-  chrome.tabs.query({ url: t }, function(o) {
-    o.length > 0 && o.forEach((s) => {
-      s.id !== void 0 && chrome.tabs.remove(s.id);
+  chrome.tabs.query({ url: t }, function (o) {
+    o.length > 0 && o.forEach((a) => {
+      a.id !== void 0 && chrome.tabs.remove(a.id);
     }), chrome.tabs.create({ url: t });
   });
 }
-
-const r = new Map(), p = (e, t, o) => {
-  o.url && r.set(e, o.url);
+const i = /* @__PURE__ */ new Map(), p = (e, t, o) => {
+  o.url && i.set(e, o.url);
 }, l = (e) => {
-  const t = r.get(e);
-  r.delete(e), t && t.includes("https://web.whatsapp") && chrome.runtime.sendMessage({ action: "whatsIsClosed" });
+  const t = i.get(e);
+  i.delete(e), t && t.includes("https://web.whatsapp") && chrome.runtime.sendMessage({ action: "whatsIsClosed" });
 }, m = () => {
   try {
     chrome.tabs.onUpdated.removeListener(p), chrome.tabs.onRemoved.removeListener(l);
   } catch (e) {
-    console.error("erro ao remover os ouvintes do WhatsIsOpen", e);
+    console.error("error listener", e);
   } finally {
     chrome.tabs.onUpdated.addListener(p), chrome.tabs.onRemoved.addListener(l);
   }
 };
-
 c();
 m();
-
 chrome.action.onClicked.addListener(() => {
   c(), m(), u();
 });
